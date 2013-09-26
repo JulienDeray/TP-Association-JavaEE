@@ -1,6 +1,7 @@
 .idea/
 TP-Association-JavaEE.iml
-.classpath
-.project
-.settings
 
+/.project
+/.settings/
+/.target/
+/.settings/
