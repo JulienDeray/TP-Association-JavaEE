@@ -1,4 +1,6 @@
 .idea/
 TP-Association-JavaEE.iml
+.classpath
+.project
+.settings
 
-/.gitignore
