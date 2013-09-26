@@ -1,4 +1,7 @@
 .idea/
 TP-Association-JavaEE.iml
 
-/.gitignore
+/.project
+/.settings/
+/.target/
+/.settings/
