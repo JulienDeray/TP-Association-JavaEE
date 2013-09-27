@@ -9,15 +9,15 @@ package com.model;
 
 public class Adherent {
 
-    int id;
-    String login;
-    String password;
-    String nom;
-    String prenom;
-    String adresse;
-    String codePostal;
-    String ville;
-    String pays;
+    private int id;
+    private String login;
+    private String password;
+    private String nom;
+    private String prenom;
+    private String adresse;
+    private String codePostal;
+    private String ville;
+    private String pays;
 
     public Adherent(String login, String password, String nom, String prenom, String adresse, String codePostal, String ville, String pays) {
         this.login = login;

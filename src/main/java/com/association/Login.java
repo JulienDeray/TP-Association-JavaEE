@@ -1,6 +1,6 @@
 package com.association;
 
-import com.dao.AdherentDao;
+import com.dao.ArticleDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,17 +17,13 @@ import java.sql.SQLException;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    AdherentDao adherentDao;
-
     /**
      * Default constructor. 
      */
     public Login() throws SQLException {
-        adherentDao = new AdherentDao();
-        //adherentDao.saveAdherent(new Adherent("toto", "toto", "Toto", "Caca", "Rue de la vache qui pue", "86000", "La Havane", 1));
-        //System.out.println(adherentDao.getAdherentByLogin("toto", "toto"));
-        //System.out.println(adherentDao.getAdherentById(2));
-        //System.out.println(adherentDao.getAllAdherents());
+        ArticleDao articleDao = new ArticleDao();
+        //articleDao.saveArticle(new Article("c4", 20.0, 25));
+        System.out.println(articleDao.getAllArticles());
     }
 
 	/**

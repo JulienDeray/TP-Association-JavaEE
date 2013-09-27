@@ -7,6 +7,7 @@
  */
 package com.dao;
 
+import com.core.tools;
 import com.model.Adherent;
 
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ public class AdherentDao extends ConnectionManager {
             stmt.execute("insert into " + tableName + " (ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, ad_pa_id) " +
                     "values ('" +
                     adherent.getLogin() + "','" +
-                    md5(adherent.getPassword() + 666) + "','" +
+                    tools.md5(adherent.getPassword() + 666) + "','" +
                     adherent.getNom() + "','" +
                     adherent.getPrenom() + "','" +
                     adherent.getAdresse() + "','" +
@@ -90,7 +91,7 @@ public class AdherentDao extends ConnectionManager {
             " FROM " + tableName +
             " LEFT JOIN PAYS " +
             " ON ADHERENT.ad_pa_id = PAYS.pa_id" +
-            " WHERE ADHERENT.ad_login = '" + login + "' and ADHERENT.ad_password = '" + md5( password + 666 ) + "'"
+            " WHERE ADHERENT.ad_login = '" + login + "' and ADHERENT.ad_password = '" + tools.md5(password + 666) + "'"
         );
 
         while(results.next()) {
@@ -125,19 +126,5 @@ public class AdherentDao extends ConnectionManager {
             adherent = new Adherent(0, "error", "error", "error", "error", "error", "error", "error", "NO");
         }
         return adherent;
-    }
-
-    public String md5(String md5) {
-        try {
-            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
-            byte[] array = md.digest(md5.getBytes());
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < array.length; ++i) {
-                sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
-            }
-            return sb.toString();
-        } catch (java.security.NoSuchAlgorithmException e) {
-        }
-        return null;
     }
 }
