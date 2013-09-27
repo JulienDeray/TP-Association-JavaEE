@@ -19,6 +19,17 @@ public class Adherent {
     String ville;
     int pays_id;
 
+    public Adherent(String login, String password, String nom, String prenom, String adresse, String codePostal, String ville, int pays_id) {
+        this.login = login;
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.codePostal = codePostal;
+        this.ville = ville;
+        this.pays_id = pays_id;
+    }
+
     public Adherent(int id, String login, String password, String nom, String prenom, String adresse, String codePostal, String ville, int pays_id) {
         this.id = id;
         this.login = login;
