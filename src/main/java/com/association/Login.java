@@ -22,8 +22,7 @@ public class Login extends HttpServlet {
      */
     public Login() throws SQLException {
         ArticleDao articleDao = new ArticleDao();
-        //articleDao.saveArticle(new Article("c4", 20.0, 25));
-        System.out.println(articleDao.getAllArticles());
+        System.out.println( articleDao.getArticleById(2) );
     }
 
 	/**

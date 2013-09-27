@@ -54,8 +54,24 @@ public class ArticleDao extends ConnectionManager  {
         return adherentList;
     }
 
-    // TODO : getArticleById
-    // TODO : getArticleByCode
+    public Article getArticleById(int id) throws SQLException {
+        Article article;
+
+        stmt = conn.createStatement();
+
+        ResultSet results = stmt.executeQuery(
+                "SELECT ar_id, ar_code, ar_prix, ar_stock" +
+                        " FROM " + tableName
+        );
+
+        results.next();
+        article = extractArticle(results);
+
+        results.close();
+        stmt.close();
+
+        return article;
+    }
 
     private Article extractArticle(ResultSet results) {
         Article article;
