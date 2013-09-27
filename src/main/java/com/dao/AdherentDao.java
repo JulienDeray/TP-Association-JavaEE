@@ -73,6 +73,26 @@ public class AdherentDao extends ConnectionManager {
         return adherent;
     }
 
+    public List<Adherent> getAdherentByLogin( String login, String password ) throws SQLException {
+        List<Adherent> adherentList = new ArrayList<Adherent>();
+
+        stmt = conn.createStatement();
+
+        ResultSet results = stmt.executeQuery(
+            "select * from " + tableName + " where ad_login = " + login + " and ad_password = " + md5( password )
+        );
+
+        while(results.next()) {
+            Adherent adherent = extractAdherent( results );
+            adherentList.add( adherent );
+        }
+
+        results.close();
+        stmt.close();
+
+        return adherentList;
+    }
+
     private Adherent extractAdherent( ResultSet resultSet ) {
         Adherent adherent;
 
