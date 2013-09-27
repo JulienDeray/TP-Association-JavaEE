@@ -25,7 +25,8 @@ public class Login extends HttpServlet {
     public Login() throws SQLException {
         adherentDao = new AdherentDao();
      //   adherentDao.saveAdherent(new Adherent("toto", "toto", "Toto", "Caca", "Rue de la vache qui pue", "86000", "La Havane", 1));
-        System.out.println( adherentDao.getAdherentById(2) );
+        System.out.println(adherentDao.getAdherentByLogin("toto", "toto"));
+        System.out.println(adherentDao.getAdherentById(2));
     }
 
 	/**

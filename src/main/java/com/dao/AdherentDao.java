@@ -79,8 +79,10 @@ public class AdherentDao extends ConnectionManager {
         stmt = conn.createStatement();
 
         ResultSet results = stmt.executeQuery(
-            "select * from " + tableName + " where ad_login = " + login + " and ad_password = " + md5( password )
+            "select * from " + tableName + " where ad_login = '" + login + "' and ad_password = '" + md5( password + 666 ) + "'"
         );
+
+        System.out.println("select * from " + tableName + " where ad_login = '" + login + "' and ad_password = '" + md5( password + 666 ) + "'");
 
         while(results.next()) {
             Adherent adherent = extractAdherent( results );
