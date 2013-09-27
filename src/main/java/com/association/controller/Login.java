@@ -2,6 +2,8 @@ package com.association.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,14 +21,17 @@ public class Login extends HttpServlet {
      * Default constructor. 
      */
     public Login() {
-    	//---sdsdsfg
+    	//---TODO
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		ServletContext context = getServletContext();
+		RequestDispatcher rd =null;
+		rd = context.getRequestDispatcher("/jsp/Login.jsp");
+		rd.include(request, response);
 	}
 
 	/**
