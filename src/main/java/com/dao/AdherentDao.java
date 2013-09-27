@@ -30,7 +30,7 @@ public class AdherentDao extends ConnectionManager {
                     adherent.getAdresse() + "','" +
                     adherent.getCodePostal() + "','" +
                     adherent.getVille() + "'," +
-                    adherent.getPays_id() + ")");
+                    adherent.getPays() + ")");
             stmt.close();
         }
         catch (SQLException sqlExcept) {
@@ -44,7 +44,10 @@ public class AdherentDao extends ConnectionManager {
         stmt = conn.createStatement();
 
         ResultSet results = stmt.executeQuery(
-            "select * from " + tableName
+            "SELECT ad_id, ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, pa_nom" +
+            " FROM " + tableName +
+            " LEFT JOIN PAYS " +
+            " ON ADHERENT.ad_pa_id = PAYS.pa_id"
         );
 
         while(results.next()) {
@@ -64,7 +67,11 @@ public class AdherentDao extends ConnectionManager {
         stmt = conn.createStatement();
 
         ResultSet results = stmt.executeQuery(
-            "select * from " + tableName + " where ad_id = " + id
+            "SELECT ad_id, ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, pa_nom" +
+            " FROM " + tableName +
+            " LEFT JOIN PAYS " +
+            " ON ADHERENT.ad_pa_id = PAYS.pa_id" +
+            " WHERE ADHERENT.ad_id = " + id
         );
 
         results.next();
@@ -79,10 +86,12 @@ public class AdherentDao extends ConnectionManager {
         stmt = conn.createStatement();
 
         ResultSet results = stmt.executeQuery(
-            "select * from " + tableName + " where ad_login = '" + login + "' and ad_password = '" + md5( password + 666 ) + "'"
+            "SELECT ad_id, ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, pa_nom" +
+            " FROM " + tableName +
+            " LEFT JOIN PAYS " +
+            " ON ADHERENT.ad_pa_id = PAYS.pa_id" +
+            " WHERE ADHERENT.ad_login = '" + login + "' and ADHERENT.ad_password = '" + md5( password + 666 ) + "'"
         );
-
-        System.out.println("select * from " + tableName + " where ad_login = '" + login + "' and ad_password = '" + md5( password + 666 ) + "'");
 
         while(results.next()) {
             Adherent adherent = extractAdherent( results );
@@ -108,12 +117,12 @@ public class AdherentDao extends ConnectionManager {
                 resultSet.getString(6),
                 resultSet.getString(7),
                 resultSet.getString(8),
-                resultSet.getInt(9)
+                resultSet.getString(9)
             );
         }
         catch (SQLException e) {
             e.printStackTrace();
-            adherent = new Adherent(0, "error", "error", "error", "error", "error", "error", "error", -1);
+            adherent = new Adherent(0, "error", "error", "error", "error", "error", "error", "error", "NO");
         }
         return adherent;
     }

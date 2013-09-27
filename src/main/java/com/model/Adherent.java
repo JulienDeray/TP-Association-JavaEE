@@ -17,9 +17,9 @@ public class Adherent {
     String adresse;
     String codePostal;
     String ville;
-    int pays_id;
+    String pays;
 
-    public Adherent(String login, String password, String nom, String prenom, String adresse, String codePostal, String ville, int pays_id) {
+    public Adherent(String login, String password, String nom, String prenom, String adresse, String codePostal, String ville, String pays) {
         this.login = login;
         this.password = password;
         this.nom = nom;
@@ -27,10 +27,10 @@ public class Adherent {
         this.adresse = adresse;
         this.codePostal = codePostal;
         this.ville = ville;
-        this.pays_id = pays_id;
+        this.pays = pays;
     }
 
-    public Adherent(int id, String login, String password, String nom, String prenom, String adresse, String codePostal, String ville, int pays_id) {
+    public Adherent(int id, String login, String password, String nom, String prenom, String adresse, String codePostal, String ville, String pays) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -39,7 +39,7 @@ public class Adherent {
         this.adresse = adresse;
         this.codePostal = codePostal;
         this.ville = ville;
-        this.pays_id = pays_id;
+        this.pays = pays;
     }
 
     public int getId() {
@@ -74,8 +74,8 @@ public class Adherent {
         return ville;
     }
 
-    public int getPays_id() {
-        return pays_id;
+    public String getPays() {
+        return pays;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class Adherent {
                 ", adresse='" + adresse + '\'' +
                 ", codePostal='" + codePostal + '\'' +
                 ", ville='" + ville + '\'' +
-                ", pays_id=" + pays_id +
+                ", pays_id=" + pays +
                 '}';
     }
 }
