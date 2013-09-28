@@ -1,43 +1,45 @@
-package com.association;
+package com.association.controller;
 
-import com.dao.ArticleDao;
+import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Order
  */
-
-public class Login extends HttpServlet {
+@WebServlet(urlPatterns={"/Order","/Order/*"})
+public class Order extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public Login() throws SQLException {
-        ArticleDao articleDao = new ArticleDao();
-        System.out.println( articleDao.getArticleById(2) );
+    public Order() {
+        super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-
-        out.println( getServletConfig().getServletName() );
+		ServletContext context = getServletContext();
+		RequestDispatcher rd =null;
+		rd = context.getRequestDispatcher("/jsp/CommandeEnCours.jsp");
+		rd.include(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 	}
 
 }
