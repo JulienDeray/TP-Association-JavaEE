@@ -7,7 +7,7 @@
  */
 package com.core;
 
-public abstract class tools {
+public abstract class Tools {
 
     public static String md5(String md5) {
         try {
