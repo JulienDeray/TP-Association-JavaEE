@@ -1,6 +1,7 @@
 package com.association.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -9,6 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.modele.bean.Article;
+import com.modele.persistence.PersistenceServiceProvider;
+import com.modele.persistence.services.ArticlePersistence;
 
 /**
  * Servlet implementation class ListArticle
@@ -30,9 +35,16 @@ public class ListArticle extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext context = getServletContext();
+		ArticlePersistence service = PersistenceServiceProvider.getService(ArticlePersistence.class);
+		
+		List<Article> articles = service.loadAll();
 		RequestDispatcher rd =null;
+		System.out.println(articles.size());
+		System.out.println(articles.get(1));
+		request.setAttribute("articles", articles);
 		rd = context.getRequestDispatcher("/jsp/Articles.jsp");
 		rd.include(request, response);
+
 	}
 
 
