@@ -7,6 +7,10 @@
  */
 package com.core;
 
+import com.modele.bean.Article;
+import com.modele.persistence.PersistenceServiceProvider;
+import com.modele.persistence.services.ArticlePersistence;
+
 public abstract class Tools {
 
     public static String md5(String md5) {
@@ -22,4 +26,14 @@ public abstract class Tools {
         }
         return null;
     }
+    public static void main(String[] args) {
+    	ArticlePersistence service = PersistenceServiceProvider.getService(ArticlePersistence.class);
+    	
+    	Article article = new Article();
+    	article.setArCode("Code1");
+    	article.setArPrix(1200);
+    	article.setArStock(999);
+    	service.insert(article);
+    	System.out.println("insert");
+	}
 }
