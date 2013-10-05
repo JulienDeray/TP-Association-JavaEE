@@ -16,7 +16,8 @@ create table ADHERENT (
 	ad_ville varchar(255),
 	ad_pa_id int,
 	CONSTRAINT adherent_pk PRIMARY KEY (ad_id),
-	CONSTRAINT pays_fk FOREIGN KEY (ad_pa_id) REFERENCES pays (pa_id)
+	CONSTRAINT pays_fk FOREIGN KEY (ad_pa_id) REFERENCES pays (pa_id),
+	CONSTRAINT login_uc UNIQUE (ad_login)
 	);
 
 create table ARTICLE (
