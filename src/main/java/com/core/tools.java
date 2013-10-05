@@ -7,9 +7,9 @@
  */
 package com.core;
 
-import com.modele.bean.Article;
-import com.modele.persistence.PersistenceServiceProvider;
-import com.modele.persistence.services.ArticlePersistence;
+import com.model.bean.Article;
+import com.model.persistence.PersistenceServiceProvider;
+import com.model.persistence.services.ArticlePersistence;
 
 public abstract class Tools {
 

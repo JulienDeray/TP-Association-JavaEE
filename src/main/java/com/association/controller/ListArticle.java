@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.modele.bean.Article;
-import com.modele.persistence.PersistenceServiceProvider;
-import com.modele.persistence.services.ArticlePersistence;
+import com.model.bean.Article;
+import com.model.persistence.PersistenceServiceProvider;
+import com.model.persistence.services.ArticlePersistence;
 
 /**
  * Servlet implementation class ListArticle
@@ -39,8 +39,6 @@ public class ListArticle extends HttpServlet {
 		
 		List<Article> articles = service.loadAll();
 		RequestDispatcher rd =null;
-		System.out.println(articles.size());
-		System.out.println(articles.get(1));
 		request.setAttribute("articles", articles);
 		rd = context.getRequestDispatcher("/jsp/Articles.jsp");
 		rd.include(request, response);
