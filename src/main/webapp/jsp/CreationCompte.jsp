@@ -1,12 +1,89 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<title>Se connecter</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<!-- Style-->
+	<style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      .form-signin {
+        width: 450px;
+        padding: 19px 19px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading{
+        margin-bottom: 10px;
+		align: center;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: 20px;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+	  .form-signin p{
+		padding-top: 5px;
+		height: 37px;
+	  }
+
+    </style>
 </head>
 <body>
+	<form class="form-signin" action="POST" action="/SignUp">
+        <h2 class="form-signin-heading">Enregistrez vous</h2>
+		
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span5">
+					<p>Identifiant : </p>
+					<p>Mot de passe : </p>
+					<p>Confirmation MDP : </p>
+					<p>Nom : </p>
+					<p>Pr&eacute;nom : </p>
+					<p>Adresse : </p>
+					<p>Code Postal : </p>
+					<p>Ville : </p>
+					<p>Pays : </p>
+				</div>
+				<div class="span7">
+					<input id="login" type="text" class="input-block">
+					<input id="password" type="password" class="input-block">
+					<input id="passwordConfirm" type="password" class="input-block">
+					<input id="nom" type="text" class="input-block">
+					<input id="prenom" type="text" class="input-block">
+					<input id="adresse" type="text" class="input-block">
+					<input id="codePostal" type="text" class="input-block">
+					<input id="ville" type="text" class="input-block">					
+					<select id="pays">
+						<c:forEach var="pays" items="${requestScope['paysAll']}" >
+							<option>pays.paNom</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div align="center">
+			<button class="btn btn-large btn-primary" type="submit">S'enregistrer</button>
+		</div>
 
+	</form>
+	<script src="bootstrap/js/bootstrap.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
