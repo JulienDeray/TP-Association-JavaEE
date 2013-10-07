@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8">
     <title>Commande</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -61,10 +61,10 @@
 		</table>
 		
 		<div class="form-actions">
-			<a href="/Order?valid=True">
+			<a href="<%=request.getContextPath()%>/Order?valid=True">
   				<button type="submit" class="btn btn-primary">Valider la commande</button>
   			</a>
-  			<a href="/Order?cancel=True">
+  			<a href="<%=request.getContextPath()%>/Order?cancel=True">
   				<button type="button" class="btn">Cancel</button>
   			</a>
 		</div>

@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-    <meta charset="utf-8">
     <title>Commande</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -63,7 +62,7 @@
 					    <c:choose>  
 					        <c:when test="${article.arStock} > 0">  
 				            	<td>${article.Stock}</td>
-				            	<td><a href="/List?article=${article.arId}"/>Commander</a></td>   
+				            	<td><a href="<%=request.getContextPath()%>/List?article=${article.arId}">Commander</a></td>   
 				            </c:when>  
 				            <c:otherwise>  
 				            	<td>Indisponible</td>

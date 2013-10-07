@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,7 @@
     </style>
 </head>
 <body>
-	<form class="form-signin" action="POST" action="/SignUp">
+	<form class="form-signin" action="POST" action="<%=request.getContextPath()%>/SignUp">
         <h2 class="form-signin-heading">Enregistrez vous</h2>
 		
 		<div class="container-fluid">

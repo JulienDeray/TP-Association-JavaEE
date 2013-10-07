@@ -46,7 +46,7 @@
     </style>
 </head>
 <body>
-	<form class="form-signin" action="POST" action="/Login">
+	<form class="form-signin" method="POST" action="<%=request.getContextPath()%>/Login">
         <h2 class="form-signin-heading">Please login</h2>
 		<table>
 			<tr>
@@ -65,7 +65,7 @@
 			<tr>
 				<td colspan="2" align="center">
 					Pas encore enregistrez ? 
-					<a href="/SignUp"> Creer votre compte </a>
+					<a href="<%=request.getContextPath()%>/SignUp"> Creer votre compte </a>
 				</td>
 			</tr>
 		</table>

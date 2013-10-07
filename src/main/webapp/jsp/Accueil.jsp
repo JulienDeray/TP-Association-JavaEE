@@ -41,8 +41,8 @@
 		</jsp:include>
 	  
 		<h3> Bienvenue sur le site des adh&eacute;rent de l'association </h3>
-		<h5> <a href="/List">Consulter les articles disponibles </a> </h5>
-		<h5> <a href="/Order">Consulter votre commande</a> </h5>
+		<h5> <a href="<%=request.getContextPath()%>/List">Consulter les articles disponibles </a> </h5>
+		<h5> <a href="<%=request.getContextPath()%>/Order">Consulter votre commande</a> </h5>
 	  
 
 
