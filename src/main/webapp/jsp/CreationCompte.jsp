@@ -73,7 +73,7 @@
 					<input id="ville" type="text" class="input-block">					
 					<select id="pays">
 						<c:forEach var="pays" items="${requestScope['paysAll']}" >
-							<option>pays.paNom</option>
+							<option>${pays.paNom}</option>
 						</c:forEach>
 					</select>
 				</div>

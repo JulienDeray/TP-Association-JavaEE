@@ -9,7 +9,7 @@
 	  <div class="navbar-inner">
 		<div class="nav-collapse collapse">
 		  <ul class="nav">
-			<li <% if (bouton == "Accueil") { %> class="active" <% } %>> <a href="#">Accueil</a></li>
+			<li <% if (bouton == "Accueil") { %> class="active" <% } %>> <a href="<%=request.getContextPath()%>/Accueil">Accueil</a></li>
 			<li <% if (bouton == "Articles") { %>class="active" <% } %>> <a href="<%=request.getContextPath()%>/List">Articles</a></li>
 			<li <% if (bouton == "Commande") { %>class="active" <% } %>> <a href="<%=request.getContextPath()%>/Order">Commande</a></li>
 			<li class="inactive">Adherent : <%= adh.getAdLogin() %>			
