@@ -37,7 +37,7 @@ insert into ADHERENT (ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_c
 values ('juju', 'juju', 'DERAY', 'Julien', 'Rue du bambou qui fuit', '17000', 'LA ROCHELLE', 1);
 
 insert into ARTICLE (ar_code, ar_prix, ar_stock, ar_nom)
-values ('1A', 180, 1,'article1');
+values ('1A', 180, 1, 'article1');
 
 SELECT ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, pa_nom
 FROM ADHERENT

@@ -5,12 +5,11 @@
 package com.model.test.persistence;
 
 
-import com.model.bean.Adherent ;
+import com.model.bean.Adherent;
 import com.model.mock.AdherentMock;
 import com.model.persistence.PersistenceServiceProvider;
 import com.model.persistence.services.AdherentPersistence;
-
-import org.junit.Assert;
+import junit.framework.Assert;
 import org.junit.Test;
 
 /**
