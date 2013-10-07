@@ -1,6 +1,7 @@
 package com.association.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -9,6 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.model.bean.Article;
 
 /**
  * Servlet implementation class Order
@@ -29,10 +33,18 @@ public class Order extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if(request.getParameter("cancel")!=null && request.getParameter("cancel").equals("True")){
+			HttpSession session = request.getSession();
+			session.setAttribute("orderInProcess", new ArrayList<Article>());
+		}
+		
 		ServletContext context = getServletContext();
 		RequestDispatcher rd =null;
 		rd = context.getRequestDispatcher("/jsp/CommandeEnCours.jsp");
 		rd.include(request, response);
+	
+		
 	}
 
 	/**
@@ -40,6 +52,7 @@ public class Order extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 	}
 
 }

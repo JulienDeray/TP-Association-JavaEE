@@ -26,7 +26,7 @@ create table ARTICLE (
 	ar_nom varchar(255) NOT NULL,
 	ar_prix int NOT NULL,
 	ar_stock int NOT NULL,
-	CONSTRAINT article_pk v
+	CONSTRAINT article_pk PRIMARY KEY (ar_id)
 	);
 
 -- Toujours le pays avant l'adherent à cause de la cle etrangere !
@@ -36,8 +36,8 @@ values ('FR', 'France');
 insert into ADHERENT (ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, ad_pa_id)
 values ('juju', 'juju', 'DERAY', 'Julien', 'Rue du bambou qui fuit', '17000', 'LA ROCHELLE', 1);
 
-insert into ARTICLE (ar_code, ar_prix, ar_stock)
-values ('1A', 180, 1);
+insert into ARTICLE (ar_code, ar_prix, ar_stock, ar_nom)
+values ('1A', 180, 1,'article1');
 
 SELECT ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, pa_nom
 FROM ADHERENT

@@ -1,6 +1,7 @@
 package com.association.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.model.bean.Article;
 import com.model.persistence.PersistenceServiceProvider;
@@ -37,6 +39,23 @@ public class ListArticle extends HttpServlet {
 		ServletContext context = getServletContext();
 		ArticlePersistence service = PersistenceServiceProvider.getService(ArticlePersistence.class);
 		
+		if(request.getParameter("article")!= null){
+			int id = Integer.parseInt(request.getParameter("article"));
+			Article article = service.load(id);
+			if(article==null){
+				response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
+				return;
+			}
+			article.setArStock(article.getArStock()-1);
+			service.save(article);
+			HttpSession session = request.getSession();
+			ArrayList<Article> articles = (ArrayList<Article>) session.getAttribute("orderInProcess");
+			if(articles==null){
+				articles = new ArrayList<Article>();
+			}
+			articles.add(article);
+		}
+		
 		List<Article> articles = service.loadAll();
 		RequestDispatcher rd =null;
 		request.setAttribute("articles", articles);
@@ -44,6 +63,5 @@ public class ListArticle extends HttpServlet {
 		rd.include(request, response);
 
 	}
-
-
+	
 }

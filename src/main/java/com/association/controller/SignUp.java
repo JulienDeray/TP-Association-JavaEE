@@ -51,6 +51,7 @@ public class SignUp extends HttpServlet {
 		Adherent adherent = new Adherent();
 		String nom = null;
 		String password = null;
+		String passwordConfirm = null;
 		String prenom = null;
 		String adresse = null;
 		String codePostal = null;
@@ -74,11 +75,17 @@ public class SignUp extends HttpServlet {
 				prenom = request.getParameter("ville");
 				break;
 			case "login":
-				prenom = request.getParameter("ville");
+				prenom = request.getParameter("login");
+				break;
+			case "adresse":
+				prenom = request.getParameter("login");
 				break;
 			case "password":
 				password = Tools.md5(request.getParameter("password"));
 				break;
+			case "passwordConfirm":
+				passwordConfirm = Tools.md5(request.getParameter("passwordConfirm"));
+				break;	
 			case "pays":
 				try{
 					pays = servicePays.load(Integer.parseInt(request.getParameter("pays")));
@@ -92,7 +99,7 @@ public class SignUp extends HttpServlet {
 				return;
 			}	
 		}
-		if(pays==null||login==null||nom==null|| prenom==null || codePostal==null || ville ==null ||adresse ==null){
+		if(login==null||nom==null|| prenom==null || password ==null || !password.equals(passwordConfirm)){
 			response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
 			return;
 		}
