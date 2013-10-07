@@ -33,7 +33,10 @@ public class Order extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		if(request.getSession().getAttribute("adherent")==null){
+			response.sendRedirect(request.getContextPath()+"/Login");
+			return;
+		}
 		if(request.getParameter("cancel")!=null && request.getParameter("cancel").equals("True")){
 			HttpSession session = request.getSession();
 			session.setAttribute("orderInProcess", new ArrayList<Article>());

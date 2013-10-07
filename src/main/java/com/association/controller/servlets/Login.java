@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
 
         if( adherent != null ){
             session.setAttribute("adherent", adherent);
-            response.sendRedirect(context.getContextPath() + "/List");
+            response.sendRedirect(context.getContextPath() + "/Accueil");
         }
         else{
             request.setAttribute("error", "Login ou mot de passe invalide");

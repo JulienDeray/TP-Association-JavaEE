@@ -39,6 +39,11 @@ public class ListArticle extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession().getAttribute("adherent")==null){
+			response.sendRedirect(request.getContextPath()+"/Login");
+			return;
+		}
+		
 		ServletContext context = getServletContext();
 		ArticlePersistence service = PersistenceServiceProvider.getService(ArticlePersistence.class);
 		
