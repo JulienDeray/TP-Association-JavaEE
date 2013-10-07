@@ -23,9 +23,10 @@ create table ADHERENT (
 create table ARTICLE (
 	ar_id int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 	ar_code varchar(255) NOT NULL,
+	ar_nom varchar(255) NOT NULL,
 	ar_prix int NOT NULL,
 	ar_stock int NOT NULL,
-	CONSTRAINT article_pk PRIMARY KEY (ar_id)
+	CONSTRAINT article_pk v
 	);
 
 -- Toujours le pays avant l'adherent à cause de la cle etrangere !
@@ -42,3 +43,8 @@ SELECT ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_v
 FROM ADHERENT
 LEFT JOIN PAYS
 ON ADHERENT.ad_pa_id = PAYS.pa_id;
+
+
+
+ALTER TABLE ADHERENT
+ADD CONSTRAINT pays_uc FOREIGN KEY (ad_pa_id) REFERENCES pays (pa_id),RIMARY KEY (ar_id);
