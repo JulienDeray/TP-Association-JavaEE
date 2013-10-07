@@ -47,6 +47,7 @@
 </head>
 <body>
 	<form class="form-signin" action="POST" action="<%=request.getContextPath()%>/SignUp">
+
         <h2 class="form-signin-heading">Enregistrez vous</h2>
 		
 		<div class="container-fluid">
@@ -86,5 +87,5 @@
 	</form>
 	<script src="bootstrap/js/bootstrap.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-</body>
+    </body>
 </html>

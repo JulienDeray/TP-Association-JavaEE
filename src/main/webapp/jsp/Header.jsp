@@ -12,7 +12,7 @@
 			<li <% if (bouton == "Accueil") { %> class="active" <% } %>> <a href="<%=request.getContextPath()%>/Accueil">Accueil</a></li>
 			<li <% if (bouton == "Articles") { %>class="active" <% } %>> <a href="<%=request.getContextPath()%>/List">Articles</a></li>
 			<li <% if (bouton == "Commande") { %>class="active" <% } %>> <a href="<%=request.getContextPath()%>/Order">Commande</a></li>
-			<li class="inactive">Adherent : <%= adh.getAdLogin() %>			
+			<li class="inactive">Adherent : <%= adh.getAdLogin() %>
 				<a href="">
 					<img src="images/deconnexion.jpg" height="25px" width="25px" alt="">
 				</a>
