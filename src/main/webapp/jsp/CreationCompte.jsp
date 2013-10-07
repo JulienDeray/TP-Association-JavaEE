@@ -63,14 +63,14 @@
 					<p>Pays : </p>
 				</div>
 				<div class="span7">
-					<input id="login" type="text" class="input-block">
-					<input id="password" type="password" class="input-block">
-					<input id="passwordConfirm" type="password" class="input-block">
-					<input id="nom" type="text" class="input-block">
-					<input id="prenom" type="text" class="input-block">
+					<input id="login" type="text" class="input-block" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required>
+					<input id="password" type="password" class="input-block" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+					<input id="passwordConfirm" type="password" class="input-block" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+					<input id="nom" type="text" class="input-block" required>
+					<input id="prenom" type="text" class="input-block" required>
 					<input id="adresse" type="text" class="input-block">
-					<input id="codePostal" type="text" class="input-block">
-					<input id="ville" type="text" class="input-block">					
+					<input id="codePostal" type="text" class="input-block" pattern="[0-9]{5}">
+					<input id="ville" type="text" class="input-block">
 					<select id="pays">
 						<c:forEach var="pays" items="${requestScope['paysAll']}" >
 							<option>${pays.paNom}</option>
