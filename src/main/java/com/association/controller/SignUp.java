@@ -15,6 +15,7 @@ import com.core.Tools;
 import com.model.bean.Adherent;
 import com.model.persistence.PersistenceServiceProvider;
 import com.model.persistence.services.AdherentPersistence;
+import com.model.persistence.services.ArticlePersistence;
 import com.model.persistence.services.PaysPersistence;
 
 /**
@@ -37,6 +38,8 @@ public class SignUp extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext context = getServletContext();
+		PaysPersistence service = PersistenceServiceProvider.getService(PaysPersistence.class);
+		request.setAttribute("paysAll", service.loadAll());
 		RequestDispatcher rd =null;
 		rd = context.getRequestDispatcher("/jsp/CreationCompte.jsp");
 		rd.include(request, response);
