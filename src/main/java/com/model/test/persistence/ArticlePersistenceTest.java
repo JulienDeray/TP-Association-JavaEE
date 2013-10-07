@@ -5,13 +5,13 @@
 package com.model.test.persistence;
 
 
-import com.model.bean.Article ;
+import com.model.bean.Article;
 import com.model.mock.ArticleMock;
 import com.model.persistence.PersistenceServiceProvider;
 import com.model.persistence.services.ArticlePersistence;
-
-import org.junit.Assert;
+import junit.framework.Assert;
 import org.junit.Test;
+
 
 /**
  * JUnit test case for Article persistence service

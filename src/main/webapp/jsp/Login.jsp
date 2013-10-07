@@ -51,11 +51,11 @@
 		<table>
 			<tr>
 				<td>Identifiant</td>
-				<td><input id="login" type="text" class="input-block"></td>				
+				<td><input id="login" name="login" type="text" class="input-block"></td>
 			</tr>
 			<tr>
 				<td>Mot de passe</td>
-				<td><input id="password" type="password" class="input-block"></td>
+				<td><input id="password" name="password" type="password" class="input-block"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

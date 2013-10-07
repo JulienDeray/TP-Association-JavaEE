@@ -1,4 +1,4 @@
-package com.association.controller;
+package com.association.controller.servlets;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -93,21 +93,21 @@ public class SignUp extends HttpServlet {
 				try{
 					pays = servicePays.load(Integer.parseInt(request.getParameter("pays")));
 				}catch (Exception e) {
-					response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
+					response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrï¿½e n'est pas valide ");
 					return;
 				}
 				break;
 			default:
-				response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
+				response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrï¿½e n'est pas valide ");
 				return;
 			}	
 		}
 		if(login==null||nom==null|| prenom==null || password ==null || !password.equals(passwordConfirm)){
-			response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
+			response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrï¿½e n'est pas valide ");
 			return;
 		}
 		
-		//--TODO verification de l'unicité du login
+		//--TODO verification de l'unicitï¿½ du login
 		adherent.setPays(pays);
 		adherent.setAdAdresse(adresse);
 		adherent.setAdCodepostal(codePostal);

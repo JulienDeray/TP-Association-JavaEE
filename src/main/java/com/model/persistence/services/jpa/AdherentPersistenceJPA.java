@@ -39,4 +39,6 @@ public class AdherentPersistenceJPA extends GenericJpaService<Adherent, Integer>
 		return false ;
 	}
 
+
+
 }

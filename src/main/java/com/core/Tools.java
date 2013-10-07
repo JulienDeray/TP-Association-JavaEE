@@ -7,8 +7,10 @@
  */
 package com.core;
 
+import com.model.bean.Adherent;
 import com.model.bean.Article;
 import com.model.persistence.PersistenceServiceProvider;
+import com.model.persistence.services.AdherentPersistence;
 import com.model.persistence.services.ArticlePersistence;
 
 public abstract class Tools {
@@ -26,14 +28,33 @@ public abstract class Tools {
         }
         return null;
     }
-    public static void main(String[] args) {
-    	ArticlePersistence service = PersistenceServiceProvider.getService(ArticlePersistence.class);
-    	
-    	Article article = new Article();
-    	article.setArCode("Code1");
-    	article.setArPrix(1200);
-    	article.setArStock(999);
-    	service.insert(article);
-    	System.out.println("insert");
+
+    public static void init() {
+
 	}
+
+    private static void initAdherent() {
+        AdherentPersistence adService = PersistenceServiceProvider.getService(AdherentPersistence.class);
+
+        Adherent adherent = new Adherent();
+        adherent.setAdLogin("toto");
+        adherent.setAdPassword(md5("toto"));
+
+        adherent.setAdNom("Golé");
+        adherent.setAdPrenom("Jerry");
+
+        adService.insert( adherent );
+    }
+
+    private static void initArticle() {
+        ArticlePersistence service = PersistenceServiceProvider.getService(ArticlePersistence.class);
+
+        Article article = new Article();
+        article.setArNom("Le premier article");
+        article.setArCode("Code1");
+        article.setArPrix(1200);
+        article.setArStock(999);
+        service.insert(article);
+        System.out.println("insert");
+    }
 }

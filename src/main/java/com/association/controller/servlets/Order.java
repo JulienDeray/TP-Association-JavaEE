@@ -1,4 +1,4 @@
-package com.association.controller;
+package com.association.controller.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
