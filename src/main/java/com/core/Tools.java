@@ -32,7 +32,7 @@ public abstract class Tools {
     public static void init() {
 
 	}
-
+    
     private static void initAdherent() {
         AdherentPersistence adService = PersistenceServiceProvider.getService(AdherentPersistence.class);
 

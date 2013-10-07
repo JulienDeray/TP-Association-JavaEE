@@ -7,13 +7,13 @@
  */
 package com.association.controller.services;
 
-import com.model.bean.Adherent;
-import com.model.persistence.PersistenceServiceProvider;
-import com.model.persistence.services.AdherentPersistence;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.model.bean.Adherent;
+import com.model.persistence.PersistenceServiceProvider;
+import com.model.persistence.services.AdherentPersistence;
 
 public class ServiceLogin {
 
@@ -23,7 +23,7 @@ public class ServiceLogin {
     public Adherent login(String login, String password) {
 
         AdherentPersistence serviceAdh = PersistenceServiceProvider.getService(AdherentPersistence.class);
-        Map<String,Object> param = new HashMap<>();
+        Map<String,Object> param = new HashMap<String,Object>();
 
         param.put("adLogin = ", login);
 
