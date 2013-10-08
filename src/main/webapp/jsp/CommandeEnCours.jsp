@@ -52,11 +52,15 @@
 				</tr>
 			</thead>
 			<tbody>
+			
 				<c:forEach var="article" items="${requestScope['articles']}" >
-					<td>${article.Code}</td>
-					<td>${article.Nom}</td>
-					<td>${article.Prix}</td>					  		
+					<tr>
+					<td>${article.arCode}</td>
+					<td>${article.arNom}</td>
+					<td>${article.arPrix}</td>					  		
+	  				</tr>
 	  			</c:forEach>
+			
 			</tbody>
 		</table>
 		

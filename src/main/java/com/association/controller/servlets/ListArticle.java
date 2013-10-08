@@ -54,13 +54,14 @@ public class ListArticle extends HttpServlet {
 				response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
 				return;
 			}
-			article.setArStock(article.getArStock()-1);
-			service.save(article);
+			
 			HttpSession session = request.getSession();
 			ArrayList<Article> articles = (ArrayList<Article>) session.getAttribute("orderInProcess");
 			if(articles==null){
 				articles = new ArrayList<Article>();
+				session.setAttribute("orderInProcess", articles);
 			}
+			
 			articles.add(article);
 		}
 		
