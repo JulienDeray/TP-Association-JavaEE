@@ -60,8 +60,8 @@
 					<td>${article.arPrix}</td>
 					
 					    <c:choose>  
-					        <c:when test="${article.arStock} > 0">  
-				            	<td>${article.Stock}</td>
+					        <c:when test="${article.arStock > 0}">  
+				            	<td>${article.arStock}</td>
 				            	<td><a href="<%=request.getContextPath()%>/List?article=${article.arId}">Commander</a></td>   
 				            </c:when>  
 				            <c:otherwise>  

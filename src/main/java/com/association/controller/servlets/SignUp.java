@@ -72,16 +72,16 @@ public class SignUp extends HttpServlet {
 				prenom = request.getParameter("prenom");
 				break;
 			case "codePostal":
-				prenom = request.getParameter("codePostal");
+				codePostal = request.getParameter("codePostal");
 				break;
 			case "ville":
-				prenom = request.getParameter("ville");
+				ville = request.getParameter("ville");
 				break;
 			case "login":
-				prenom = request.getParameter("login");
+				login = request.getParameter("login");
 				break;
 			case "adresse":
-				prenom = request.getParameter("login");
+				adresse = request.getParameter("adresse");
 				break;
 			case "password":
 				password = Tools.md5(request.getParameter("password"));
@@ -93,17 +93,22 @@ public class SignUp extends HttpServlet {
 				try{
 					pays = servicePays.load(Integer.parseInt(request.getParameter("pays")));
 				}catch (Exception e) {
-					response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entr�e n'est pas valide ");
+					System.out.println("salut");
+					response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
 					return;
 				}
 				break;
 			default:
-				response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entr�e n'est pas valide ");
+				response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
 				return;
 			}	
 		}
 		if(login==null||nom==null|| prenom==null || password ==null || !password.equals(passwordConfirm)){
-			response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entr�e n'est pas valide ");
+			System.out.println("login :"+login);
+			System.out.println("nom :"+nom);
+			System.out.println("prenom :"+prenom);
+			System.out.println("password :"+password);
+			response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
 			return;
 		}
 		

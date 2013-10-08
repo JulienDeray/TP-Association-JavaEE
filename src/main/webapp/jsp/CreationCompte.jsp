@@ -46,7 +46,7 @@
     </style>
 </head>
 <body>
-	<form class="form-signin" action="POST" action="<%=request.getContextPath()%>/SignUp">
+	<form class="form-signin" method="POST" action="<%=request.getContextPath()%>/SignUp">
 
         <h2 class="form-signin-heading">Enregistrez vous</h2>
 		
@@ -64,17 +64,17 @@
 					<p>Pays : </p>
 				</div>
 				<div class="span7">
-					<input id="login" type="text" class="input-block" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required>
-					<input id="password" type="password" class="input-block" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
-					<input id="passwordConfirm" type="password" class="input-block" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
-					<input id="nom" type="text" class="input-block" required>
-					<input id="prenom" type="text" class="input-block" required>
-					<input id="adresse" type="text" class="input-block">
-					<input id="codePostal" type="text" class="input-block" pattern="[0-9]{5}">
-					<input id="ville" type="text" class="input-block">
-					<select id="pays">
+					<input name="login" id="login" type="text" class="input-block" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required>
+					<input name="password" id="password" type="password" class="input-block" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+					<input name="passwordConfirm" id="passwordConfirm" type="password" class="input-block" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+					<input name="nom" id="nom" type="text" class="input-block" required>
+					<input name="prenom"  id="prenom" type="text" class="input-block" required>
+					<input name="adresse" id="adresse" type="text" class="input-block">
+					<input name="codePostal" id="codePostal" type="text" class="input-block" pattern="[0-9]{5}">
+					<input  name="ville" id="ville" type="text" class="input-block">
+					<select id="pays" name="pays">
 						<c:forEach var="pays" items="${requestScope['paysAll']}" >
-							<option>${pays.paNom}</option>
+							<option value="${pays.paId}">${pays.paNom}</option>
 						</c:forEach>
 					</select>
 				</div>

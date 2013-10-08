@@ -51,7 +51,7 @@ public class ListArticle extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("article"));
 			Article article = service.load(id);
 			if(article==null){
-				response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entr�e n'est pas valide ");
+				response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
 				return;
 			}
 			article.setArStock(article.getArStock()-1);
