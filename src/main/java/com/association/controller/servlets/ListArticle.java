@@ -41,7 +41,7 @@ public class ListArticle extends HttpServlet {
 			Article article = service.load(id);
 
 			if ( article == null ) {
-				response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entr�e n'est pas valide ");
+				response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
                 return;
 			}
             else {
@@ -50,6 +50,7 @@ public class ListArticle extends HttpServlet {
 
                 if( articles == null ) {
                     articles = new ArrayList<>();
+                    session.setAttribute("orderInProcess",articles);
                 }
 
                 articles.add(article);
