@@ -10,10 +10,11 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <script type="text/javascript" src="boostrap/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="boostrap/js/bootstrap-spineedit.js"></script>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <style type="text/css">
       body {
         padding-top: 20px;
@@ -40,7 +41,7 @@
     		<jsp:param name="bouton" value="Aticles" />
 		</jsp:include>
 	  	
-		<h3>Votre commande en cours</h3>
+		<h3>Liste des articles</h3>
 	  
 		<table class="table table-hover">
 			<thead>
@@ -58,11 +59,11 @@
 					<td>${article.arCode}</td>
 					<td>${article.arNom}</td>
 					<td>${article.arPrix}</td>
-					
+
 					    <c:choose>  
 					        <c:when test="${article.arStock > 0}">  
 				            	<td>${article.arStock}</td>
-				            	<td><a href="<%=request.getContextPath()%>/List?article=${article.arId}">Commander</a></td>   
+				            	<td><a href="<%=request.getContextPath()%>/List?article=${article.arId}">Ajouter au panier</a></td>
 				            </c:when>  
 				            <c:otherwise>  
 				            	<td>Indisponible</td>
@@ -75,8 +76,5 @@
 		</table>
 	</div> <!-- /container -->
 
-    <script src="bootstrap/js/bootstrap.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-  </body>
+    </body>
 </html>

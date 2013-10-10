@@ -9,8 +9,9 @@ import com.model.bean.Adherent;
 import com.model.mock.AdherentMock;
 import com.model.persistence.PersistenceServiceProvider;
 import com.model.persistence.services.AdherentPersistence;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
+
 
 /**
  * JUnit test case for Adherent persistence service
