@@ -63,7 +63,12 @@
 					    <c:choose>  
 					        <c:when test="${article.arStock > 0}">  
 				            	<td>${article.arStock}</td>
-				            	<td><a href="<%=request.getContextPath()%>/List?article=${article.arId}">Ajouter au panier</a></td>
+				            	<td><a href="<%=request.getContextPath()%>/List?article=${article.arId}">
+                                    <c:choose>
+                                        <c:when test="${article.arId == requestScope['added']}">
+                                            <span class="label label-info">Ajouté !</span>
+                                        </c:when>
+                                    </c:choose> Ajouter au panier</a></td>
 				            </c:when>  
 				            <c:otherwise>  
 				            	<td>Indisponible</td>

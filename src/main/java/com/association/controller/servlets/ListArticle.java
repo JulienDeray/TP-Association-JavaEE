@@ -53,6 +53,7 @@ public class ListArticle extends HttpServlet {
                 }
 
                 articles.add(article);
+                request.setAttribute("added", id);
             }
 		}
 		
