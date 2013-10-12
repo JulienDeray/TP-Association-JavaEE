@@ -24,7 +24,7 @@ public class ServiceLogin {
 
         AdherentPersistence serviceAdh = PersistenceServiceProvider.getService(AdherentPersistence.class);
         Map<String,Object> param = new HashMap<String,Object>();
-
+        
         param.put("adLogin = ", login);
 
         List<Adherent> adherant = serviceAdh.search(param);
@@ -36,4 +36,22 @@ public class ServiceLogin {
             return null;
         }
     }
+    
+    public boolean isExist(String login) {
+
+        AdherentPersistence serviceAdh = PersistenceServiceProvider.getService(AdherentPersistence.class);
+        Map<String,Object> param = new HashMap<String,Object>();
+        
+        param.put("adLogin = ", login);
+
+        List<Adherent> adherant = serviceAdh.search(param);
+
+        if(adherant.size() == 1 ) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }

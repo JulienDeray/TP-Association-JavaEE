@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 	<title>Se connecter</title>
@@ -46,9 +47,14 @@
     </style>
 </head>
 <body>
+
 	<form class="form-signin" method="POST" action="<%=request.getContextPath()%>/Login">
+		<c:if test="${error != null}">
+			<div class="alert alert-danger">${error}</div>
+		</c:if>
         <h2 class="form-signin-heading">Please login</h2>
 		<table>
+		
 			<tr>
 				<td>Identifiant</td>
 				<td><input id="login" name="login" type="text" class="input-block" required></td>
