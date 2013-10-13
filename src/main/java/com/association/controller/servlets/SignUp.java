@@ -47,6 +47,7 @@ public class SignUp extends HttpServlet {
 	}
 
 	/**
+	 * validation de l'enregistrement d'un utilisateur
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -63,6 +64,7 @@ public class SignUp extends HttpServlet {
 		String login = null;
 		com.model.bean.Pays pays = null;
 		Enumeration<String> parameters = request.getParameterNames();
+		//on reccupère touts les parametres
 		while(parameters.hasMoreElements()){
 			String param = parameters.nextElement();
 			switch (param) {
@@ -99,15 +101,19 @@ public class SignUp extends HttpServlet {
 				}
 				break;
 			default:
+				//si un paramètre n'est pas bon, l'utilisateur à modifier le formulaire ou n'a pas utilié la page voulu
 				response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
 				return;
 			}	
 		}
+		//verification que les paramètres obligatoires sont bien rentrés et que les deux passwords sont les mêmes
 		if(login==null||nom==null|| prenom==null || password ==null || !password.equals(passwordConfirm)){
 			response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
 			return;
 		}
 		ServiceLogin serviceLogin = new ServiceLogin();
+		
+		//si le login est deja utilise par un autre utilisateur on renvoi le formulaire prérempli
 		if(serviceLogin.isExist(login)){
 			
 			
@@ -125,6 +131,7 @@ public class SignUp extends HttpServlet {
 			return;
 		}
 		
+		//enregistrement de l'utilisateur dans la base
 		adherent.setPays(pays);
 		adherent.setAdAdresse(adresse);
 		adherent.setAdCodepostal(codePostal);
@@ -139,7 +146,10 @@ public class SignUp extends HttpServlet {
 		response.sendRedirect(request.getContextPath()+"/Accueil");
 	}
 	
-	
+	/**
+	 * 
+	 * @return tous les pays de la base de données
+	 */
 	public List<Pays> getAllPays(){
 		PaysPersistence service = PersistenceServiceProvider.getService(PaysPersistence.class);
 		return service.loadAll();

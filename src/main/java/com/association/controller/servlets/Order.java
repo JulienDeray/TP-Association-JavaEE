@@ -25,7 +25,7 @@ public class Order extends HttpServlet {
 	public Order() {
 		super();
 	}
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();
@@ -35,33 +35,38 @@ public class Order extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/Login");
 			return;
 		}
+        //si on demande de vider la commande
 		if ( canceled(request) ) {
 			session.setAttribute("orderInProcess", new ArrayList<Article>());
 		}
 
 		ArticlePersistence serviceAr = PersistenceServiceProvider.getService(ArticlePersistence.class);
-
+		
+		//validation de la commande
         if ( validated(request) ) {
 			ArrayList<Article> articles = (ArrayList<Article>) session.getAttribute("orderInProcess");
 
             for (Article article : articles) {
 				Article tmp = serviceAr.load(article.getArId());
+				//deducation dans le stock
 				tmp.setArStock(tmp.getArStock() - 1);
 				serviceAr.save(tmp);
 			}
 
 			session.setAttribute("orderInProcess", new ArrayList<Article>());
 
-            System.err.println(((ArrayList<Article>) request.getSession() .getAttribute("orderInProcess")).size());
+            //System.err.println(((ArrayList<Article>) request.getSession() .getAttribute("orderInProcess")).size());
             request.setAttribute("articles", request.getSession().getAttribute("orderInProcess"));
             rd = context.getRequestDispatcher("/jsp/commandeConfirmee.jsp");
             rd.include(request, response);
 		}
+        //panier vide
         else if (request.getSession().getAttribute("orderInProcess") == null || ((ArrayList<Article>) request.getSession().getAttribute("orderInProcess")).isEmpty() ) {
 			request.getSession().setAttribute("orderInProcess", new ArrayList<Article>());
             rd = context.getRequestDispatcher("/jsp/panierVide.jsp");
             rd.include(request, response);
 		}
+        //panier avec au moins un produit
         else {
             request.setAttribute("articles", request.getSession().getAttribute("orderInProcess"));
             rd = context.getRequestDispatcher("/jsp/CommandeEnCours.jsp");
@@ -69,28 +74,34 @@ public class Order extends HttpServlet {
         }
 	}
 
+	/**
+	 * Demande de validation
+	 * @param request
+	 * @return
+	 */
     private boolean validated(HttpServletRequest request) {
         return request.getParameter("valid") != null
 				&& request.getParameter("valid").equals("True")
 				&& request.getSession().getAttribute("orderInProcess") != null;
     }
-
+    /**
+     * Demande de suppression de la commande
+     * @param request
+     * @return
+     */
     private boolean canceled(HttpServletRequest request) {
         return request.getParameter("cancel") != null && request.getParameter("cancel").equals("True");
     }
-
+    
+    /**
+     * Verification de la connexion de l'adherent
+     * @param request
+     * @return True if not connected
+     */
     private boolean notConnected(HttpServletRequest request) {
         return request.getSession().getAttribute("adherent") == null;
     }
 
-    /**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
-	}
 
 }

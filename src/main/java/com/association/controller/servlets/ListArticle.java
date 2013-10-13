@@ -30,22 +30,26 @@ public class ListArticle extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		//verification de la connexion de l adherent
 		if (request.getSession().getAttribute("adherent") == null) {
 			response.sendRedirect(request.getContextPath() + "/Login");
 			return;
 		}
-
+		
 		ArticlePersistence service = PersistenceServiceProvider
 				.getService(ArticlePersistence.class);
-
+		
+		//si il y a une demande d'ajout d article dans le panier
 		if (articleAjoute(request)) {
 			int id = Integer.parseInt(request.getParameter("article"));
 			Article article = service.load(id);
-
+			
+			//si l'article n'est pas trouvé on renvoi une page erreur
 			if (article == null) {
 				response.sendError(HttpServletResponse.SC_NOT_FOUND,
 						"La page entrée n'est pas valide ");
 				return;
+			//on ajoute l article au paneir	
 			} else {
 				HttpSession session = request.getSession();
 				ArrayList<Article> articles = (ArrayList<Article>) session

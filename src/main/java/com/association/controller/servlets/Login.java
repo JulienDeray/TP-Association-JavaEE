@@ -32,7 +32,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Tools.init();
+		//Tools.init();
 
         ServletContext context = getServletContext();
 		RequestDispatcher rd;
@@ -53,11 +53,12 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
 
         Adherent adherent = serviceLogin.login(request.getParameter("login"), Tools.md5(request.getParameter("password")));
-        
+       //adherent trouve + mot de passe OK
         if( adherent != null ){
             session.setAttribute("adherent", adherent);
             response.sendRedirect(context.getContextPath() + "/Accueil");
         }
+      //adherent Non trouve ou mot de passe Non OK
         else{
             request.setAttribute("error", "Login ou mot de passe invalide");
             rd = context.getRequestDispatcher("/jsp/Login.jsp");

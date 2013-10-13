@@ -24,6 +24,7 @@ public class Logout extends HttpServlet {
     }
 
 	/**
+	 * invalide la session et retourne vers la page de Login
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
