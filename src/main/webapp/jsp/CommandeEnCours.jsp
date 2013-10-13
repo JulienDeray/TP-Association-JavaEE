@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.model.bean.Article" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -52,15 +53,20 @@
 				</tr>
 			</thead>
 			<tbody>
-			
+				<% int total =0; %>
 				<c:forEach var="article" items="${requestScope['articles']}" >
 					<tr>
 					<td>${article.arCode}</td>
 					<td>${article.arNom}</td>
 					<td>${article.arPrix}</td>					  		
+	  				<% total =total + ((Article) pageContext.getAttribute("article")).getArPrix();%>
 	  				</tr>
 	  			</c:forEach>
-			
+			 	<tr>
+			 		<td> Total</td>
+			 		<td></td>
+			 		<td><%=total %></td>
+			 	</tr>
 			</tbody>
 		</table>
 		
