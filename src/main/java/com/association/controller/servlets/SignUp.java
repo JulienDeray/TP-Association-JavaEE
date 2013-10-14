@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -27,6 +28,8 @@ import com.model.persistence.services.PaysPersistence;
 public class SignUp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@Inject
+	ServletContext context;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -123,7 +126,7 @@ public class SignUp extends HttpServlet {
 			request.setAttribute("adresse",adresse);
 			request.setAttribute("ville",ville);
 			request.setAttribute("codePostal",codePostal);
-			ServletContext context = getServletContext();
+			
 			request.setAttribute("paysAll", getAllPays());
 			RequestDispatcher rd =null;
 			rd = context.getRequestDispatcher("/jsp/CreationCompte.jsp");
