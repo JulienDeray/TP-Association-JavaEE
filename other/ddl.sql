@@ -34,7 +34,7 @@ insert into PAYS (pa_code, pa_nom)
 values ('FR', 'France');
 
 insert into ADHERENT (ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, ad_pa_id)
-values ('test', 'd8e8fca2dc0f896fd7cb4cb0031ba249', 'DUPONT', 'Albert', 'Rue du bambou qui fuit', '17000', 'LA ROCHELLE', 1);
+values ('test', '79b5daa411656f050457963a70e78bcc', 'DUPONT', 'Albert', 'Rue du bambou qui fuit', '17000', 'LA ROCHELLE', 1);
 
 insert into ARTICLE (ar_code, ar_prix, ar_stock, ar_nom)
 values ('1A', 360, 10, 'Peluche Power Ranger Rouge');
