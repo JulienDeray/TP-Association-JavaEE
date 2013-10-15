@@ -27,13 +27,7 @@
       .container > hr {
         margin: 60px 0;
       }
-	<%@ include file="HeaderCSS.jsp" %>
-    </style>
-  </head>
 
-  <body>
-
-    <div class="container">
 
       	<jsp:include page="Header.jsp" >
     		<jsp:param name="bouton" value="Accueil" />
