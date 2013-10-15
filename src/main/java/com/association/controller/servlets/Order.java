@@ -36,10 +36,10 @@ public class Order extends HttpServlet {
     //    ServletContext context = getServletContext();
         RequestDispatcher rd;
 
-        if ( notConnected(request) ) {
-			response.sendRedirect(request.getContextPath() + "/Login");
-			return;
-		}
+//        if ( notConnected(request) ) {
+//			response.sendRedirect(request.getContextPath() + "/Login");
+//			return;
+//		}
         //si on demande de vider la commande
 		if ( canceled(request) ) {
 			session.setAttribute("orderInProcess", new ArrayList<Article>());
@@ -98,14 +98,14 @@ public class Order extends HttpServlet {
         return request.getParameter("cancel") != null && request.getParameter("cancel").equals("True");
     }
     
-    /**
-     * Verification de la connexion de l'adherent
-     * @param request
-     * @return True if not connected
-     */
-    private boolean notConnected(HttpServletRequest request) {
-        return request.getSession().getAttribute("adherent") == null;
-    }
+//    /**
+//     * Verification de la connexion de l'adherent
+//     * @param request
+//     * @return True if not connected
+//     */
+//    private boolean notConnected(HttpServletRequest request) {
+//        return request.getSession().getAttribute("adherent") == null;
+//    }
 
 
 
