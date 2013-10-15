@@ -1,19 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0"
-  xmlns="http://java.sun.com/xml/ns/javaee"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
     http://java.sun.com/xml/ns/javaee
     http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  <display-name>Archetype Created Web Application</display-name>
-	    <welcome-file-list>  
-        <welcome-file>Login</welcome-file>  
-    </welcome-file-list> 
-    <listener>
-        <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
-    </listener>
-    <resource-env-ref>
-        <resource-env-ref-name>BeanManager</resource-env-ref-name>
-        <resource-env-ref-type>javax.enterprise.inject.spi.BeanManager</resource-env-ref-type>
-    </resource-env-ref>
+	<display-name>Archetype Created Web Application</display-name>
+	<welcome-file-list>
+		<welcome-file>Login</welcome-file>
+	</welcome-file-list>
+	<filter>
+		<description>
+	    	</description>
+		<display-name>ConnexionFilter</display-name>
+		<filter-name>ConnexionFilter</filter-name>
+		<filter-class>com.association.controller.filter.ConnexionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ConnexionFilter</filter-name>
+		<url-pattern>/List</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>ConnexionFilter</filter-name>
+		<url-pattern>/List/*</url-pattern>
+	</filter-mapping>
+		<filter-mapping>
+		<filter-name>ConnexionFilter</filter-name>
+		<url-pattern>/Logout/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>ConnexionFilter</filter-name>
+		<url-pattern>/Logout</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>ConnexionFilter</filter-name>
+		<url-pattern>/Accueil</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>ConnexionFilter</filter-name>
+		<url-pattern>/Accueil/*</url-pattern>
+	</filter-mapping>
+		<filter-mapping>
+		<filter-name>ConnexionFilter</filter-name>
+		<url-pattern>/Order/*</url-pattern>
+	</filter-mapping>
+		<filter-mapping>
+		<filter-name>ConnexionFilter</filter-name>
+		<url-pattern>/Order/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+	</listener>
+	<resource-env-ref>
+		<resource-env-ref-name>BeanManager</resource-env-ref-name>
+		<resource-env-ref-type>javax.enterprise.inject.spi.BeanManager</resource-env-ref-type>
+	</resource-env-ref>
 </web-app>
