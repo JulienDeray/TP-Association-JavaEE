@@ -80,11 +80,11 @@
 						pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" required> 
 					<input
 						name="password" id="password" type="password" class="input-block"
-						pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+						pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
 						placeholder="8 caractères et une majuscule" required> 
 					<input name="passwordConfirm" 
 						id="passwordConfirm" type="password" class="input-block"
-						pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+						pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
 						placeholder="8 caractères et une majuscule" required> 
 					<input name="nom" id="nom" type="text" value ="${nom}"
 						class="input-block" required> 
