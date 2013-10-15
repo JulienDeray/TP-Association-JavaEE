@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 	<title>Se connecter</title>
@@ -49,6 +49,7 @@
 <body>
 
 	<form class="form-signin" method="POST" action="<%=request.getContextPath()%>/Login">
+		<!--  Affichage de l'erreur -->
 		<c:if test="${error != null}">
 			<div class="alert alert-danger">${error}</div>
 		</c:if>
@@ -69,6 +70,7 @@
 				</td>				
 			</tr>
 			<tr>
+			<!-- Lien vers la page d'inscription -->
 				<td colspan="2" align="center">
 					Pas encore enregistrez ? 
 					<a href="<%=request.getContextPath()%>/SignUp"> Creer votre compte </a>

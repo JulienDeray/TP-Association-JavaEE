@@ -4,10 +4,12 @@
 	String bouton = (String) request.getParameter("bouton");
 %>
 
+<!-- Affichage de la barre de menu -->
 <div class="masthead">
 	<div class="navbar">
 	  <div class="navbar-inner">
 		<div class="nav-collapse collapse">
+		<!-- Récupération de la page active pour mettre le bouton correspondant actif -->
 		  <ul class="nav">
 			<li <% if (bouton == "Accueil") { %> class="active" <% } %>> <a href="<%=request.getContextPath()%>/Accueil">Accueil</a></li>
 			<li <% if (bouton == "Articles") { %>class="active" <% } %>> <a href="<%=request.getContextPath()%>/List">Articles</a></li>

@@ -54,29 +54,34 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="article" items="${requestScope['articles']}" >
-				<tr>
-					<td>${article.arCode}</td>
-					<td>${article.arNom}</td>
-					<td>${article.arPrix}</td>
-
-					    <c:choose>  
-					        <c:when test="${article.arStock > 0}">  
-				            	<td>${article.arStock}</td>
-				            	<td><a href="<%=request.getContextPath()%>/List?article=${article.arId}">
-                                    <c:choose>
-                                        <c:when test="${article.arId == requestScope['added']}">
-                                            <span class="label label-info">Ajouté !</span>
-                                        </c:when>
-                                    </c:choose> Ajouter au panier</a></td>
-				            </c:when>  
-				            <c:otherwise>  
-				            	<td>Indisponible</td>
-				            	<td></td>
-				            </c:otherwise>  
-					    </c:choose>  
-				</tr>				
-			</c:forEach>
+				<!-- Affichage de chaque article en base -->
+				<c:forEach var="article" items="${requestScope['articles']}" >
+					<tr>
+						<td>${article.arCode}</td>
+						<td>${article.arNom}</td>
+						<td>${article.arPrix}</td>
+	
+						    <c:choose>						    	 
+						        <c:when test="${article.arStock > 0}">  
+						        	<!--  Affichage du stock si > 0 --> 
+					            	<td>${article.arStock}</td>
+					            	
+					            	<!-- Ajout de l'article dans le panier -->
+					            	<td><a href="<%=request.getContextPath()%>/List?article=${article.arId}">
+	                                    <c:choose>
+	                                        <c:when test="${article.arId == requestScope['added']}">
+	                                            <span class="label label-info">Ajouté !</span>
+	                                        </c:when>
+	                                    </c:choose> Ajouter au panier</a></td>
+					            </c:when>
+					            <c:otherwise>					            						            
+					            	<!-- Sinon article indisponible et impossible de l'ajouter au panier -->    
+					            	<td>Indisponible</td>
+					            	<td></td>
+					            </c:otherwise>  
+						    </c:choose>  
+					</tr>				
+				</c:forEach>
 			</tbody>
 		</table>
 	</div> <!-- /container -->

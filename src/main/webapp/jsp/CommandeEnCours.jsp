@@ -43,7 +43,7 @@
 	  
 		<h3>Votre commande en cours</h3>
 	  		
-	  		
+	  	<!-- Récupérataion du panier conserver en sessions  -->	
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -54,6 +54,7 @@
 			</thead>
 			<tbody>
 				<% int total =0; %>
+				<!-- Récupération de chaque élément du panier -->
 				<c:forEach var="article" items="${requestScope['articles']}" >
 					<tr>
 					<td>${article.arCode}</td>
@@ -70,6 +71,7 @@
 			</tbody>
 		</table>
 		
+		<!-- Boutons d'actions -->
 		<div class="form-actions">
 			<a href="<%=request.getContextPath()%>/Order?valid=True">
   				<button type="submit" class="btn btn-primary">Valider la commande</button>
