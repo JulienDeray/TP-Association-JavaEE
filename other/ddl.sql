@@ -34,17 +34,22 @@ insert into PAYS (pa_code, pa_nom)
 values ('FR', 'France');
 
 insert into ADHERENT (ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, ad_pa_id)
-values ('juju', 'juju', 'DERAY', 'Julien', 'Rue du bambou qui fuit', '17000', 'LA ROCHELLE', 1);
+values ('test', 'd8e8fca2dc0f896fd7cb4cb0031ba249', 'DUPONT', 'Albert', 'Rue du bambou qui fuit', '17000', 'LA ROCHELLE', 1);
 
 insert into ARTICLE (ar_code, ar_prix, ar_stock, ar_nom)
-values ('1A', 180, 1, 'article1');
+values ('1A', 360, 10, 'Peluche Power Ranger Rouge');
+
+insert into ARTICLE (ar_code, ar_prix, ar_stock, ar_nom)
+values ('2A', 300, 9, 'Peluche Power Ranger Vert');
+
+insert into ARTICLE (ar_code, ar_prix, ar_stock, ar_nom)
+values ('3A', 400, 6, 'Peluche Power Ranger Bleu');
+
+insert into ARTICLE (ar_code, ar_prix, ar_stock, ar_nom)
+values ('4A', 180, 3, 'Peluche Power Ranger Rose');
+
 
 SELECT ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, pa_nom
 FROM ADHERENT
 LEFT JOIN PAYS
 ON ADHERENT.ad_pa_id = PAYS.pa_id;
-
-
-
-ALTER TABLE ADHERENT
-ADD CONSTRAINT pays_uc FOREIGN KEY (ad_pa_id) REFERENCES pays (pa_id),RIMARY KEY (ar_id);
