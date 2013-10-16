@@ -42,26 +42,12 @@ public class Order extends HttpServlet {
 		}
 
 		ArticlePersistence serviceAr = PersistenceServiceProvider.getService(ArticlePersistence.class);
-		ArrayList<Article> articlesRestant = new ArrayList<Article>();
+		
 		//validation de la commande
         if ( validated(request) ) {
-			ArrayList<Article> articles = (ArrayList<Article>) session.getAttribute("orderInProcess");
-
-            for (Article article : articles) {
-				Article tmp = serviceAr.load(article.getArId());
-				//deducation dans le stock
-				if(tmp.getArStock()>0){
-					System.out.println(tmp.getArStock());
-					tmp.setArStock(tmp.getArStock() - 1);
-					serviceAr.save(tmp);
-					
-				}else{
-					articlesRestant .add(tmp);
-				}
-			}
+			ArrayList<Article> articlesRestant = validOrder(session, serviceAr);
 
 			session.setAttribute("orderInProcess", articlesRestant);
-			System.out.println(articlesRestant.size()+"  ssss");
 			if(articlesRestant.size()>0){
 				request.setAttribute("error", "Les articles restant n'ont pas pu être validés par manque de stock");
 				request.setAttribute("articles", request.getSession().getAttribute("orderInProcess"));
@@ -83,6 +69,29 @@ public class Order extends HttpServlet {
             rd = context.getRequestDispatcher("/jsp/CommandeEnCours.jsp");
             rd.include(request, response);
         }
+	}
+	/**
+	 * Valide la commande
+	 * @param session
+	 * @param serviceAr
+	 * @return les articles n'ayant pas pu être validés
+	 */
+	private ArrayList<Article> validOrder(HttpSession session,
+			ArticlePersistence serviceAr) {
+		ArrayList<Article> articles = (ArrayList<Article>) session.getAttribute("orderInProcess");
+		ArrayList<Article> articlesRestant = new ArrayList<Article>();
+		for (Article article : articles) {
+			Article tmp = serviceAr.load(article.getArId());
+			//deducation dans le stock
+			if(tmp.getArStock()>0){
+				tmp.setArStock(tmp.getArStock() - 1);
+				serviceAr.save(tmp);
+				
+			}else{
+				articlesRestant .add(tmp);
+			}
+		}
+		return articlesRestant;
 	}
 
 	/**
