@@ -44,7 +44,7 @@ public class ListArticle extends HttpServlet {
 				response.sendError(HttpServletResponse.SC_NOT_FOUND,
 						"La page entrée n'est pas valide ");
 				return;
-			//on ajoute l article au paneir	
+			//on ajoute l article au panier
 			} else {
 				HttpSession session = request.getSession();
 				ArrayList<Article> articles = (ArrayList<Article>) session

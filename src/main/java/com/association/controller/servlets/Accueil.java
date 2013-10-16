@@ -1,13 +1,12 @@
 package com.association.controller.servlets;
 
-import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Servlet implementation class Accueil
@@ -34,7 +33,7 @@ public class Accueil extends HttpServlet {
 			return;
 		}
 		
-		RequestDispatcher rd =null;
+		RequestDispatcher rd;
 		rd = getServletContext().getRequestDispatcher("/jsp/Accueil.jsp");
 		rd.include(request, response);
 	}

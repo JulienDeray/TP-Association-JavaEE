@@ -33,36 +33,37 @@ public class Order extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-    //    ServletContext context = getServletContext();
         RequestDispatcher rd;
+		ArticlePersistence serviceAr = PersistenceServiceProvider.getService(ArticlePersistence.class);
 
         //si on demande de vider la commande
 		if ( canceled(request) ) {
 			session.setAttribute("orderInProcess", new ArrayList<Article>());
 		}
 
-		ArticlePersistence serviceAr = PersistenceServiceProvider.getService(ArticlePersistence.class);
-		
 		//validation de la commande
         if ( validated(request) ) {
 			ArrayList<Article> articlesRestant = validOrder(session, serviceAr);
 
 			session.setAttribute("orderInProcess", articlesRestant);
-			if(articlesRestant.size()>0){
+			if( articlesRestant.size() > 0 ) {
 				request.setAttribute("error", "Les articles restant n'ont pas pu être validés par manque de stock");
 				request.setAttribute("articles", request.getSession().getAttribute("orderInProcess"));
 				rd = context.getRequestDispatcher("/jsp/CommandeEnCours.jsp");
-			}else{
+			}
+            else {
 				rd = context.getRequestDispatcher("/jsp/commandeConfirmee.jsp");
 			}
             rd.include(request, response);
 		}
+
         //panier vide
-        else if (request.getSession().getAttribute("orderInProcess") == null || ((ArrayList<Article>) request.getSession().getAttribute("orderInProcess")).isEmpty() ) {
+        else if (panierVide(request)) {
 			request.getSession().setAttribute("orderInProcess", new ArrayList<Article>());
             rd = context.getRequestDispatcher("/jsp/panierVide.jsp");
             rd.include(request, response);
 		}
+
         //panier avec au moins un produit
         else {
             request.setAttribute("articles", request.getSession().getAttribute("orderInProcess"));
@@ -70,7 +71,17 @@ public class Order extends HttpServlet {
             rd.include(request, response);
         }
 	}
-	/**
+
+    /**
+     * Check si le panier est vide
+     * @param request
+     * @return
+     */
+    private boolean panierVide(HttpServletRequest request) {
+        return request.getSession().getAttribute("orderInProcess") == null || ((ArrayList<Article>) request.getSession().getAttribute("orderInProcess")).isEmpty();
+    }
+
+    /**
 	 * Valide la commande
 	 * @param session
 	 * @param serviceAr

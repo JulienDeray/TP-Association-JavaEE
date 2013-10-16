@@ -1,6 +1,8 @@
 package com.association.controller.servlets;
 
-import java.io.IOException;
+import com.association.controller.services.ServiceLogin;
+import com.core.Tools;
+import com.model.bean.Adherent;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -11,11 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.association.controller.services.ServiceLogin;
-import com.core.Tools;
-import com.model.bean.Adherent;
-import javax.inject.Inject;
+import java.io.IOException;
 
 
 
@@ -28,6 +26,8 @@ public class Login extends HttpServlet {
 
 	@Inject
 	ServletContext context;
+
+    private RequestDispatcher rd;
 	
 	/**
      * Default constructor.
@@ -40,13 +40,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Tools.init();
-
-    //    ServletContext context = getServletContext();
-		RequestDispatcher rd;
-
 		rd = context.getRequestDispatcher("/jsp/Login.jsp");
-		
 		rd.include(request, response);
 	}
 
@@ -55,18 +49,17 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServiceLogin serviceLogin = new ServiceLogin();
-        RequestDispatcher rd;
-
-       // ServletContext context = getServletContext();
         HttpSession session = request.getSession();
 
         Adherent adherent = serviceLogin.login(request.getParameter("login"), Tools.md5(request.getParameter("password")));
-       //adherent trouve + mot de passe OK
+
+        //adherent trouve + mot de passe OK
         if( adherent != null ){
             session.setAttribute("adherent", adherent);
             response.sendRedirect(context.getContextPath() + "/Accueil");
         }
-      //adherent Non trouve ou mot de passe Non OK
+
+        //adherent Non trouve ou mot de passe Non OK
         else{
             request.setAttribute("error", "Login ou mot de passe invalide");
             rd = context.getRequestDispatcher("/jsp/Login.jsp");

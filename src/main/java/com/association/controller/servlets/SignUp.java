@@ -1,8 +1,12 @@
 package com.association.controller.servlets;
 
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.List;
+import com.association.controller.services.ServiceLogin;
+import com.core.Tools;
+import com.model.bean.Adherent;
+import com.model.bean.Pays;
+import com.model.persistence.PersistenceServiceProvider;
+import com.model.persistence.services.AdherentPersistence;
+import com.model.persistence.services.PaysPersistence;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -12,14 +16,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.association.controller.services.ServiceLogin;
-import com.core.Tools;
-import com.model.bean.Adherent;
-import com.model.bean.Pays;
-import com.model.persistence.PersistenceServiceProvider;
-import com.model.persistence.services.AdherentPersistence;
-import com.model.persistence.services.PaysPersistence;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.List;
 
 /**
  * Servlet implementation class SignUp
@@ -30,6 +29,7 @@ public class SignUp extends HttpServlet {
        
 	@Inject
 	ServletContext context;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -67,6 +67,7 @@ public class SignUp extends HttpServlet {
 		String login = null;
 		com.model.bean.Pays pays = null;
 		Enumeration<String> parameters = request.getParameterNames();
+
 		//on reccupère touts les parametres
 		while(parameters.hasMoreElements()){
 			String param = parameters.nextElement();
@@ -110,26 +111,24 @@ public class SignUp extends HttpServlet {
 			}	
 		}
 		//verification que les paramètres obligatoires sont bien rentrés et que les deux passwords sont les mêmes
-		if(login==null||nom==null|| prenom==null || password ==null || !password.equals(passwordConfirm)){
+		if( login == null || nom == null || prenom == null || password == null || !password.equals(passwordConfirm) ) {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND, "La page entrée n'est pas valide ");
 			return;
 		}
+
 		ServiceLogin serviceLogin = new ServiceLogin();
 		
 		//si le login est deja utilise par un autre utilisateur on renvoi le formulaire prérempli
 		if(serviceLogin.isExist(login)){
-			
-			
 			request.setAttribute("error", "Le login est déjà utilisé par un autre utilisateur");
 			request.setAttribute("nom",nom);
 			request.setAttribute("prenom",prenom);
 			request.setAttribute("adresse",adresse);
 			request.setAttribute("ville",ville);
 			request.setAttribute("codePostal",codePostal);
-			
 			request.setAttribute("paysAll", getAllPays());
-			RequestDispatcher rd =null;
-			rd = context.getRequestDispatcher("/jsp/CreationCompte.jsp");
+
+            RequestDispatcher rd = context.getRequestDispatcher("/jsp/CreationCompte.jsp");
 			rd.include(request, response);
 			return;
 		}
@@ -146,7 +145,7 @@ public class SignUp extends HttpServlet {
 		serviceAdh.insert(adherent);
 		
 		request.getSession().setAttribute("adherent", adherent);
-		response.sendRedirect(request.getContextPath()+"/Accueil");
+		response.sendRedirect( request.getContextPath() + "/Accueil" );
 	}
 	
 	/**
