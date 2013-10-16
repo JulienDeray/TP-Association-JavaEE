@@ -36,10 +36,6 @@ public class Order extends HttpServlet {
     //    ServletContext context = getServletContext();
         RequestDispatcher rd;
 
-//        if ( notConnected(request) ) {
-//			response.sendRedirect(request.getContextPath() + "/Login");
-//			return;
-//		}
         //si on demande de vider la commande
 		if ( canceled(request) ) {
 			session.setAttribute("orderInProcess", new ArrayList<Article>());
@@ -73,8 +69,6 @@ public class Order extends HttpServlet {
 			}else{
 				rd = context.getRequestDispatcher("/jsp/commandeConfirmee.jsp");
 			}
-            //System.err.println(((ArrayList<Article>) request.getSession() .getAttribute("orderInProcess")).size());
-            //rd = context.getRequestDispatcher("/jsp/commandeConfirmee.jsp");
             rd.include(request, response);
 		}
         //panier vide
