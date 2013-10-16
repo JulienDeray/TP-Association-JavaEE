@@ -46,7 +46,7 @@ public class Order extends HttpServlet {
 		}
 
 		ArticlePersistence serviceAr = PersistenceServiceProvider.getService(ArticlePersistence.class);
-		
+		ArrayList<Article> articlesRestant = new ArrayList<Article>();
 		//validation de la commande
         if ( validated(request) ) {
 			ArrayList<Article> articles = (ArrayList<Article>) session.getAttribute("orderInProcess");
@@ -54,15 +54,27 @@ public class Order extends HttpServlet {
             for (Article article : articles) {
 				Article tmp = serviceAr.load(article.getArId());
 				//deducation dans le stock
-				tmp.setArStock(tmp.getArStock() - 1);
-				serviceAr.save(tmp);
+				if(tmp.getArStock()>0){
+					System.out.println(tmp.getArStock());
+					tmp.setArStock(tmp.getArStock() - 1);
+					serviceAr.save(tmp);
+					
+				}else{
+					articlesRestant .add(tmp);
+				}
 			}
 
-			session.setAttribute("orderInProcess", new ArrayList<Article>());
-
+			session.setAttribute("orderInProcess", articlesRestant);
+			System.out.println(articlesRestant.size()+"  ssss");
+			if(articlesRestant.size()>0){
+				request.setAttribute("error", "Les articles restant n'ont pas pu être validés par manque de stock");
+				request.setAttribute("articles", request.getSession().getAttribute("orderInProcess"));
+				rd = context.getRequestDispatcher("/jsp/CommandeEnCours.jsp");
+			}else{
+				rd = context.getRequestDispatcher("/jsp/commandeConfirmee.jsp");
+			}
             //System.err.println(((ArrayList<Article>) request.getSession() .getAttribute("orderInProcess")).size());
-            request.setAttribute("articles", request.getSession().getAttribute("orderInProcess"));
-            rd = context.getRequestDispatcher("/jsp/commandeConfirmee.jsp");
+            //rd = context.getRequestDispatcher("/jsp/commandeConfirmee.jsp");
             rd.include(request, response);
 		}
         //panier vide

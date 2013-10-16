@@ -35,7 +35,9 @@
 		</jsp:include>
 	  
 		<h3>Votre commande en cours</h3>
-	  		
+	  		<c:if test="${error != null}">
+				<div class="alert alert-danger">${error}</div>
+			</c:if>
 	  	<!-- Récupérataion du panier conserver en sessions  -->	
 		<table class="table table-hover">
 			<thead>
