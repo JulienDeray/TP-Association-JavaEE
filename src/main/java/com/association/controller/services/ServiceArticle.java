@@ -27,11 +27,12 @@ public class ServiceArticle {
 		
 		ArrayList<Article> articlesRestant = new ArrayList<Article>();
 		for (Article article : articles) {
-			Article tmp = serviceAr.load(article.getArId());
+			Article tmp = load(article.getArId());
+			System.out.println(tmp);
 			//deducation dans le stock
 			if(tmp.getArStock()>0){
 				tmp.setArStock(tmp.getArStock() - 1);
-				serviceAr.save(tmp);
+				save(tmp);
 				
 			}else{
 				articlesRestant .add(tmp);
@@ -39,4 +40,8 @@ public class ServiceArticle {
 		}
 		return articlesRestant;
 	}
+	public void save(Article article){
+		serviceAr.save(article);
+	}
+	
 }
