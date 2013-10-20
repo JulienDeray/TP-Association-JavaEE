@@ -28,8 +28,7 @@ public class ServiceArticle {
 		ArrayList<Article> articlesRestant = new ArrayList<Article>();
 		for (Article article : articles) {
 			Article tmp = load(article.getArId());
-			System.out.println(tmp);
-			//deducation dans le stock
+			//deduction dans le stock
 			if(tmp.getArStock()>0){
 				tmp.setArStock(tmp.getArStock() - 1);
 				save(tmp);
