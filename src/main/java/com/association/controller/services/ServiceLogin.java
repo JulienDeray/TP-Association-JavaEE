@@ -16,8 +16,10 @@ import com.model.persistence.PersistenceServiceProvider;
 import com.model.persistence.services.AdherentPersistence;
 
 public class ServiceLogin {
-	
+	 private AdherentPersistence serviceAdh;
+	 
     public ServiceLogin() {
+    	serviceAdh = PersistenceServiceProvider.getService(AdherentPersistence.class);
     }
 
     public Adherent login(String login, String password) {
@@ -36,7 +38,7 @@ public class ServiceLogin {
     }
 
 	public List<Adherent> find(String login) {
-		AdherentPersistence serviceAdh = PersistenceServiceProvider.getService(AdherentPersistence.class);
+		
         Map<String,Object> param = new HashMap<String,Object>();
         param.put("adLogin = ", login);
         
@@ -58,6 +60,10 @@ public class ServiceLogin {
         else{
             return false;
         }
+    }
+    
+    public void insert(Adherent ad){
+    	serviceAdh.insert(ad);
     }
 
 }

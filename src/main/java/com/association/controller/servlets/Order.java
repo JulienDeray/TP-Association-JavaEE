@@ -1,8 +1,8 @@
 package com.association.controller.servlets;
 
-import com.model.bean.Article;
-import com.model.persistence.PersistenceServiceProvider;
-import com.model.persistence.services.ArticlePersistence;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import com.association.controller.services.ServiceArticle;
+import com.model.bean.Article;
+import com.model.persistence.PersistenceServiceProvider;
+import com.model.persistence.services.ArticlePersistence;
 
 /**
  * Servlet implementation class Order
@@ -34,7 +36,7 @@ public class Order extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         RequestDispatcher rd;
-		ArticlePersistence serviceAr = PersistenceServiceProvider.getService(ArticlePersistence.class);
+		//ArticlePersistence serviceAr = PersistenceServiceProvider.getService(ArticlePersistence.class);
 
         //si on demande de vider la commande
 		if ( canceled(request) ) {
@@ -43,7 +45,7 @@ public class Order extends HttpServlet {
 
 		//validation de la commande
         if ( validated(request) ) {
-			ArrayList<Article> articlesRestant = validOrder(session, serviceAr);
+			List<Article> articlesRestant = validOrder(session);
 
 			session.setAttribute("orderInProcess", articlesRestant);
 			if( articlesRestant.size() > 0 ) {
@@ -87,22 +89,11 @@ public class Order extends HttpServlet {
 	 * @param serviceAr
 	 * @return les articles n'ayant pas pu être validés
 	 */
-	private ArrayList<Article> validOrder(HttpSession session,
-			ArticlePersistence serviceAr) {
+	private List<Article> validOrder(HttpSession session) {
 		ArrayList<Article> articles = (ArrayList<Article>) session.getAttribute("orderInProcess");
-		ArrayList<Article> articlesRestant = new ArrayList<Article>();
-		for (Article article : articles) {
-			Article tmp = serviceAr.load(article.getArId());
-			//deducation dans le stock
-			if(tmp.getArStock()>0){
-				tmp.setArStock(tmp.getArStock() - 1);
-				serviceAr.save(tmp);
-				
-			}else{
-				articlesRestant .add(tmp);
-			}
-		}
-		return articlesRestant;
+		
+		
+		return new ServiceArticle().valideCommande(articles);
 	}
 
 	/**

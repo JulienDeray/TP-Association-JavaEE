@@ -1,5 +1,6 @@
 package com.association.controller.servlets;
 
+import com.association.controller.services.ServiceArticle;
 import com.model.bean.Article;
 import com.model.persistence.PersistenceServiceProvider;
 import com.model.persistence.services.ArticlePersistence;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,21 +25,21 @@ public class ListArticle extends HttpServlet {
 
 	@Inject
 	ServletContext context;
-
+	
+	private ServiceArticle serviceAr;
 	public ListArticle() {
 		super();
+		serviceAr = new ServiceArticle();
 	}
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		ArticlePersistence service = PersistenceServiceProvider
-				.getService(ArticlePersistence.class);
 		
 		//si il y a une demande d'ajout d article dans le panier
 		if (articleAjoute(request)) {
 			int id = Integer.parseInt(request.getParameter("article"));
-			Article article = service.load(id);
+			Article article = serviceAr.load(id);
 			
 			//si l'article n'est pas trouvé on renvoi une page erreur
 			if (article == null) {
@@ -60,7 +62,7 @@ public class ListArticle extends HttpServlet {
 			}
 		}
 
-		List<Article> articles = service.loadAll();
+		List<Article> articles = serviceAr.loadAll();
 		RequestDispatcher rd;
 		request.setAttribute("articles", articles);
 		rd = context.getRequestDispatcher("/WEB-INF/Articles.jsp");

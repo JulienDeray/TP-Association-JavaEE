@@ -1,0 +1,42 @@
+package com.association.controller.services;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.model.bean.Article;
+import com.model.persistence.PersistenceServiceProvider;
+import com.model.persistence.services.ArticlePersistence;
+
+public class ServiceArticle {
+
+	private ArticlePersistence serviceAr;
+	
+	public ServiceArticle() {
+		serviceAr = PersistenceServiceProvider.getService(ArticlePersistence.class);
+	}
+	
+	public Article load(int id){
+		return serviceAr.load(id);
+	}
+	
+	public List<Article> loadAll(){
+		return serviceAr.loadAll();
+	}
+	
+	public List<Article> valideCommande(List<Article> articles){
+		
+		ArrayList<Article> articlesRestant = new ArrayList<Article>();
+		for (Article article : articles) {
+			Article tmp = serviceAr.load(article.getArId());
+			//deducation dans le stock
+			if(tmp.getArStock()>0){
+				tmp.setArStock(tmp.getArStock() - 1);
+				serviceAr.save(tmp);
+				
+			}else{
+				articlesRestant .add(tmp);
+			}
+		}
+		return articlesRestant;
+	}
+}

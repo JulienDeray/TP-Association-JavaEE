@@ -142,7 +142,7 @@ public class SignUp extends HttpServlet {
 		adherent.setAdPrenom(prenom);
 		adherent.setAdVille(ville);
 		adherent.setAdPassword(password);
-		serviceAdh.insert(adherent);
+		serviceLogin.insert(adherent);
 		
 		request.getSession().setAttribute("adherent", adherent);
 		response.sendRedirect( request.getContextPath() + "/Accueil" );
