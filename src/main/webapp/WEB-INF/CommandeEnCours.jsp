@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.model.bean.Article" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -38,7 +38,7 @@
 	  		<c:if test="${error != null}">
 				<div class="alert alert-danger">${error}</div>
 			</c:if>
-	  	<!-- Récupérataion du panier conserver en sessions  -->	
+	  	<!-- RÃ©cupÃ©rataion du panier conserver en sessions  -->	
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -49,7 +49,7 @@
 			</thead>
 			<tbody>
 				<% int total =0; %>
-				<!-- Récupération de chaque élément du panier -->
+				<!-- RÃ©cupÃ©ration de chaque Ã©lÃ©ment du panier -->
 				<c:forEach var="article" items="${requestScope['articles']}" >
 					<tr>
 					<td>${article.arCode}</td>

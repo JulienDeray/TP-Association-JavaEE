@@ -51,7 +51,7 @@ public class Order extends HttpServlet {
 			if( articlesRestant.size() > 0 ) {
 				request.setAttribute("error", "Les articles restant n'ont pas pu être validés par manque de stock");
 				request.setAttribute("articles", request.getSession().getAttribute("orderInProcess"));
-				rd = context.getRequestDispatcher("/jsp/CommandeEnCours.jsp");
+				rd = context.getRequestDispatcher("/WEB-INF/CommandeEnCours.jsp");
 			}
             else {
 				rd = context.getRequestDispatcher("/WEB-INF/commandeConfirmee.jsp");

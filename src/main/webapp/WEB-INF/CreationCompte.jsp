@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -81,11 +81,11 @@
 					<input
 						name="password" id="password" type="password" class="input-block"
 						pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
-						placeholder="8 caractères et une majuscule" required> 
+						placeholder="8 caractÃ¨res et une majuscule" required> 
 					<input name="passwordConfirm" 
 						id="passwordConfirm" type="password" class="input-block"
 						pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
-						placeholder="8 caractères et une majuscule" required> 
+						placeholder="8 caractÃ¨res et une majuscule" required> 
 					<input name="nom" id="nom" type="text" value ="${nom}"
 						class="input-block" required> 
 					<input name="prenom" value ="${prenom}"

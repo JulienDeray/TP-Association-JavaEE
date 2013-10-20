@@ -54,7 +54,6 @@ values ('3A', 400, 6, 'Peluche Power Ranger Bleu');
 insert into ARTICLE (ar_code, ar_prix, ar_stock, ar_nom)
 values ('4A', 180, 3, 'Peluche Power Ranger Rose');
 
-
 SELECT ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, pa_nom
 FROM ADHERENT
 LEFT JOIN PAYS
