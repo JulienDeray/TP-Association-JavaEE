@@ -34,7 +34,7 @@ public class Accueil extends HttpServlet {
 		}
 		
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher("/jsp/Accueil.jsp");
+		rd = getServletContext().getRequestDispatcher("/WEB-INF/Accueil.jsp");
 		rd.include(request, response);
 	}
 

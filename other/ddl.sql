@@ -32,6 +32,8 @@ create table ARTICLE (
 -- Toujours le pays avant l'adherent à cause de la cle etrangere !
 insert into PAYS (pa_code, pa_nom)
 values ('FR', 'France');
+insert into PAYS (pa_code, pa_nom)
+values ('EN', 'English');
 
 insert into ADHERENT (ad_login, ad_password, ad_nom, ad_prenom, ad_adresse, ad_codepostal, ad_ville, ad_pa_id)
 values ('test', '79b5daa411656f050457963a70e78bcc', 'DUPONT', 'Albert', 'Rue du bambou qui fuit', '17000', 'LA ROCHELLE', 1);

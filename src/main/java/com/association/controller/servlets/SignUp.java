@@ -45,7 +45,7 @@ public class SignUp extends HttpServlet {
 		ServletContext context = getServletContext();
 		request.setAttribute("paysAll", getAllPays());
 		RequestDispatcher rd =null;
-		rd = context.getRequestDispatcher("/jsp/CreationCompte.jsp");
+		rd = context.getRequestDispatcher("/WEB-INF/CreationCompte.jsp");
 		rd.include(request, response);
 	}
 
@@ -128,7 +128,7 @@ public class SignUp extends HttpServlet {
 			request.setAttribute("codePostal",codePostal);
 			request.setAttribute("paysAll", getAllPays());
 
-            RequestDispatcher rd = context.getRequestDispatcher("/jsp/CreationCompte.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/CreationCompte.jsp");
 			rd.include(request, response);
 			return;
 		}

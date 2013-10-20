@@ -63,7 +63,7 @@ public class ListArticle extends HttpServlet {
 		List<Article> articles = service.loadAll();
 		RequestDispatcher rd;
 		request.setAttribute("articles", articles);
-		rd = context.getRequestDispatcher("/jsp/Articles.jsp");
+		rd = context.getRequestDispatcher("/WEB-INF/Articles.jsp");
 		rd.include(request, response);
 
 	}

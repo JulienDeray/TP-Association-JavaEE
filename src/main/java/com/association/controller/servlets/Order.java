@@ -52,7 +52,7 @@ public class Order extends HttpServlet {
 				rd = context.getRequestDispatcher("/jsp/CommandeEnCours.jsp");
 			}
             else {
-				rd = context.getRequestDispatcher("/jsp/commandeConfirmee.jsp");
+				rd = context.getRequestDispatcher("/WEB-INF/commandeConfirmee.jsp");
 			}
             rd.include(request, response);
 		}
@@ -60,14 +60,14 @@ public class Order extends HttpServlet {
         //panier vide
         else if (panierVide(request)) {
 			request.getSession().setAttribute("orderInProcess", new ArrayList<Article>());
-            rd = context.getRequestDispatcher("/jsp/panierVide.jsp");
+            rd = context.getRequestDispatcher("/WEB-INF/panierVide.jsp");
             rd.include(request, response);
 		}
 
         //panier avec au moins un produit
         else {
             request.setAttribute("articles", request.getSession().getAttribute("orderInProcess"));
-            rd = context.getRequestDispatcher("/jsp/CommandeEnCours.jsp");
+            rd = context.getRequestDispatcher("/WEB-INF/CommandeEnCours.jsp");
             rd.include(request, response);
         }
 	}

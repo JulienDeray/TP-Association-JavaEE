@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		rd = context.getRequestDispatcher("/jsp/Login.jsp");
+		rd = context.getRequestDispatcher("/WEB-INF/Login.jsp");
 		rd.include(request, response);
 	}
 
@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
         //adherent Non trouve ou mot de passe Non OK
         else{
             request.setAttribute("error", "Login ou mot de passe invalide");
-            rd = context.getRequestDispatcher("/jsp/Login.jsp");
+            rd = context.getRequestDispatcher("/WEB-INF/Login.jsp");
             rd.include(request, response);
 	    }
     }
