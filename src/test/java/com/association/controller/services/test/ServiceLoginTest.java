@@ -60,13 +60,10 @@ public class ServiceLoginTest {
 		when(serviceLogin.find("log")).thenReturn(adherents);
 		assertTrue(serviceLogin.isExist("log"));
 		
-		
 		//test avec mauvais login
 		when(serviceLogin.find("log2")).thenReturn(new ArrayList<Adherent>());
 		assertTrue(serviceLogin.isExist("log2"));
 		
-		
-
 	}
 
 }
