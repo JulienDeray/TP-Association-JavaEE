@@ -31,7 +31,7 @@ public class PaysPersistenceTest
 		PaysMock mock = new PaysMock();
 		
 		// TODO : set primary key values here 
-		process( service, mock, 0  );
+		process( service, mock, 1  );
 		// process( service, mock, ... );
 	}
 

@@ -1,9 +1,6 @@
 package com.association.controller.services.test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
@@ -62,7 +59,7 @@ public class ServiceLoginTest {
 		
 		//test avec mauvais login
 		when(serviceLogin.find("log2")).thenReturn(new ArrayList<Adherent>());
-		assertTrue(serviceLogin.isExist("log2"));
+		assertFalse(serviceLogin.isExist("log2"));
 		
 	}
 
