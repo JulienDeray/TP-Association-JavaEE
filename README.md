@@ -24,7 +24,7 @@ Dossiers utiles :
 ----------------
 
 other : base derby + fichier sql d'initialisation
-
+livrables : le war + le zip des sources
 src/main/java/com/association/controller/servlets : les servlets
 
 src/main/java/com/association/controller/filter : le filtre de verification d'authentification de l'utilisateur appliqué sur toutes les URLs sauf sur la page Login
